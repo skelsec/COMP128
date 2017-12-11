@@ -1,8 +1,8 @@
 """
-Demonstaration software for COMP128 (aka A3A8) version 2 and 3
-Use it for educational purposes if possible
+Python implementation of the COMP128 (aka A3A8) algorithm version 2 and 3
+Author: Tamas Jos (@skelsec)
+Email:  info [at] skelsec.com
 
-https://blog.skelsec.com/
 """
 
  
