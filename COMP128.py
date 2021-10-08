@@ -5,7 +5,7 @@ Email:  info [at] skelsec.com
 
 """
 
- 
+
 table0=[197, 235, 60, 151, 98, 96, 3, 100, 248, 118, 42, 117, 172, 211, 181, 203, 61,
 		126, 156, 87, 149, 224, 55, 132, 186, 63, 238, 255, 85, 83, 152, 33, 160,
 		184, 210, 219, 159, 11, 180, 194, 130, 212, 147, 5, 215, 92, 27, 46, 113,
@@ -64,7 +64,7 @@ def comp128v23_internal(KXOR,RAND):
 
 	for i in range(16):
 		for j in range(8):
-			output[i] = output[i] ^ (((KM_RM[(19 * (j + 8 * i) + 19) % 256 / 8] >> (3 * j + 3) % 8) & 1) << j)
+			output[i] = output[i] ^ (((KM_RM[(19 * (j + 8 * i) + 19) % 256 // 8] >> (3 * j + 3) % 8) & 1) << j)
 
 	return output
 	
@@ -123,7 +123,7 @@ def comp128v23(K, RAND, version = 2):
 def hex2intarr(input):
 	"""converts hex string to an array of integers
 	"""
-	return map(lambda a: int(a.encode('hex'),16), (a for a in input.decode('hex')))
+	return bytes.fromhex(input)
 		
 def intarr2hex(input):
 	"""converts array of integers to hex strings
@@ -143,20 +143,18 @@ if __name__ == '__main__':
 	Ki = hex2intarr(args.Ki)
 	RAND = hex2intarr(args.RAND)
 	version = args.version
-	
-	print '----------- INPUT  -------------'
-	print 'COMP128 version ' + str(version)
-	print 'Ki:      ' + intarr2hex(Ki)
-	print 'RAND:    ' + intarr2hex(RAND)
+
+	print('----------- INPUT  -------------')
+	print('COMP128 version ' + str(version))
+	print('Ki:      ' + intarr2hex(Ki))
+	print('RAND:    ' + intarr2hex(RAND))
 	
 	OUTPUT = comp128v23(Ki, RAND, version)
 	SRES = OUTPUT[:4]
 	Kc = OUTPUT[4:]
 	
-	print '----------- OUTPUT -------------'
-	print "SIM OUTPUT:" + intarr2hex(OUTPUT)
-	print "SRES:  " + intarr2hex(SRES)
-	print "Kc:    " + intarr2hex(Kc)
-
-
+	print('----------- OUTPUT -------------')
+	print("SIM OUTPUT:" + intarr2hex(OUTPUT))
+	print("SRES:  " + intarr2hex(SRES))
+	print("Kc:    " + intarr2hex(Kc))
 
