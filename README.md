@@ -2,7 +2,7 @@
 A working implementation of the COMP128 algorithm, versions 2 and 3 
 
 # Prerequisites
-Python v2.7
+Python v3.8
 
 # Where is this implementation used?
 Guys from FreeRadius implemented their version of the algorithm written in C based on this script https://doc.freeradius.org/comp128_8c_source.html
